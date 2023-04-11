@@ -28,7 +28,10 @@ app.use(
 );
 
 async function main() {
-  
+    // test route
+    app.get("/", (req, res) => {
+        res.send("It's alive!");
+    })
 }
 
 main();
