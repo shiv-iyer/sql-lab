@@ -27,11 +27,15 @@ app.use(
   })
 );
 
+// import in routes
+// the landingRoutes object will refer to the Router object we
+// exported out from the landing.js file.
+const landingRoutes = require('./routes/landing');
+
 async function main() {
-    // test route
-    app.get("/", (req, res) => {
-        res.send("It's alive!");
-    })
+    // we are telling Experss to consult the route registered in the
+    // landingRoutes object, for a URL that begins with /
+    app.use("/", landingRoutes);
 }
 
 main();
