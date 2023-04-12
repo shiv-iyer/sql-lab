@@ -10,5 +10,16 @@ router.get("/", (req,res) => {
     res.render('landing/index');
 })
 
+// add the routes for the about us and contact us pages
+router.get("/about-us", (req,res) => {
+    //res.send("Welcome.");
+    res.render('landing/about-us');
+})
+
+router.get("/contact-us", (req,res) => {
+    //res.send("Welcome.");
+    res.render('landing/contact-us');
+})
+
 // Export out the Router
 module.exports = router;
