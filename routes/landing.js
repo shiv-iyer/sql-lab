@@ -6,7 +6,8 @@ const router = express.Router();
 
 // Add a new route to the Express router
 router.get("/", (req,res) => {
-    res.send("Welcome.");
+    //res.send("Welcome.");
+    res.render('landing/index');
 })
 
 // Export out the Router
