@@ -1,0 +1,1 @@
+INSERT INTO posters (title, cost, decsription, date, stock, height, width) values ("The Story of Mario", 125, "This tells the story of an Italian plumber, Mario", "04-13-2023", 4, 100, 50);
