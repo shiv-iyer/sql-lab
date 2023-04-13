@@ -1,3 +1,5 @@
+// products migration
+
 'use strict';
 
 var dbm;

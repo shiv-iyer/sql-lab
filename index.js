@@ -31,11 +31,13 @@ app.use(
 // the landingRoutes object will refer to the Router object we
 // exported out from the landing.js file.
 const landingRoutes = require('./routes/landing');
+const posterRoutes = require('./routes/posters');
 
 async function main() {
     // we are telling Experss to consult the route registered in the
     // landingRoutes object, for a URL that begins with /
     app.use("/", landingRoutes);
+    app.use("/posters", posterRoutes);
 }
 
 main();

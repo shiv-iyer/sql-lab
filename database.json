@@ -3,7 +3,7 @@
         "driver": "mysql",
         "user": "foo",
         "password": "bar",
-        "database": "organic",
+        "database": "posters",
         "host": "127.0.0.1"
     }
 }
