@@ -9,7 +9,7 @@ const {Poster} = require('../models');
 router.get('/', async (req, res) => {
     // 2. fetch all the products (i.e. SELECT * from products)
     let posters = await Poster.collection().fetch();
-    res.render('posters/index', {
+    res.render('landing/index', {
         'posters': posters.toJSON() // 3. convert collection to JSON
     })
 });
