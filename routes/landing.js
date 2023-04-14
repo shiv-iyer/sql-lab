@@ -21,5 +21,9 @@ router.get("/contact-us", (req,res) => {
     res.render('landing/contact-us');
 })
 
+router.get("/create", (req, res) => {
+    res.render('posters/create');
+});
+
 // Export out the Router
 module.exports = router;

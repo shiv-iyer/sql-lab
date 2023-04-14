@@ -1,0 +1,12 @@
+{{#extends 'base'}}
+
+{{#block 'content'}}
+    <h1>Create New Poster</h1>
+    <form method="POST">
+        {{! render raw html with triple curly braces}}
+        {{{form}}}
+        <input type="submit" value="Add Poster" class="btn btn-primary"/>
+    </form>
+{{/block}}
+
+{{/extends}}
