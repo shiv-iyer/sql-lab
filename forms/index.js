@@ -72,14 +72,16 @@ const createPosterForm = () => {
             errorAfterField: true,
             cssClasses: {
                 label: ['form-label']
-            }
+            },
+            'validators': [validators.integer()]
         }),
         'width': fields.string({
             required: true,
             errorAfterField: true,
             cssClasses: {
                 label: ['form-label']
-            }
+            },
+            'validators': [validators.integer()]
         })
     })
 };

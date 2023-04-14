@@ -40,6 +40,12 @@ router.post('/create', async (req, res) => {
             poster.set('width', form.data.width);
             await poster.save();
             res.redirect('/posters');
+        },
+        'error': async (form) => {
+            // re-render the form
+            res.render('posters/create', {
+                'form': form.toHTML(bootstrapField)
+            })
         }
     })
 })
