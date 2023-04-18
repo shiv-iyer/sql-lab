@@ -48,6 +48,32 @@ router.post('/create', async (req, res) => {
             })
         }
     })
+});
+
+// now for updating an existing product...
+router.get('/:poster_id/update', async (req, res) => {
+    // retrieve the product first
+    const posterId = req.params.poster_id;
+    const poster = await Poster.where({
+        'id': posterId
+    }).fetch({
+        require: true
+    });
+
+    const posterForm = createPosterForm();
+    // fill in the existing values
+    posterForm.fields.title.value = poster.get('title');
+    posterForm.fields.cost.value = poster.get('cost');
+    posterForm.fields.decsription.value = poster.get('decsription');
+    posterForm.fields.date.value = poster.get('date');
+    posterForm.fields.stock.value = poster.get('stock');
+    posterForm.fields.height.value = poster.get('height');
+    posterForm.fields.width.value = poster.get('width');
+
+    res.render('posters/update', {
+        'form': posterForm.toHTML(bootstrapField),
+        'poster': poster.toJSON()
+    })
 })
 
 module.exports = router;
