@@ -1,5 +1,3 @@
-// posters migration
-
 'use strict';
 
 var dbm;
@@ -22,7 +20,7 @@ exports.up = function(db) {
     id: {type: 'int', primaryKey: true, autoIncrement: true, unsigned: true},
     title: {type: 'string', length: 100, notNull: true},
     cost: {type: 'int', notNull: true},
-    description./db-migrate.sh up: 'text',
+    description: 'text',
     // hmm what data type would this be... just leave as string for now
     date: 'string',
     stock: {type: 'int', notNull: true},

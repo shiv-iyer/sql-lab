@@ -33,7 +33,7 @@ router.post('/create', async (req, res) => {
             const poster = new Poster();
             poster.set('title', form.data.title);
             poster.set('cost', form.data.cost);
-            poster.set('decsription', form.data.description);
+            poster.set('description', form.data.description);
             poster.set('date', form.data.date);
             poster.set('stock', form.data.stock);
             poster.set('height', form.data.height);
@@ -50,7 +50,7 @@ router.post('/create', async (req, res) => {
     })
 });
 
-// now for updating an existing product...
+// now for updating an existing product... route to render the form first
 router.get('/:poster_id/update', async (req, res) => {
     // retrieve the product first
     const posterId = req.params.poster_id;
@@ -64,7 +64,7 @@ router.get('/:poster_id/update', async (req, res) => {
     // fill in the existing values
     posterForm.fields.title.value = poster.get('title');
     posterForm.fields.cost.value = poster.get('cost');
-    posterForm.fields.decsription.value = poster.get('decsription');
+    posterForm.fields.description.value = poster.get('description');
     posterForm.fields.date.value = poster.get('date');
     posterForm.fields.stock.value = poster.get('stock');
     posterForm.fields.height.value = poster.get('height');
@@ -74,6 +74,32 @@ router.get('/:poster_id/update', async (req, res) => {
         'form': posterForm.toHTML(bootstrapField),
         'poster': poster.toJSON()
     })
-})
+});
+
+// route to process the submitted updating form
+router.post('/:poster_id/update', async (req, res) => {
+    // fetch the poster to be updated
+    const poster = await Poster.where({
+        'id': req.params.poster_id
+    }).fetch({
+        require: true
+    });
+
+    // process the form
+    const posterForm = createPosterForm();
+    posterForm.handle(req, {
+        'success': async (form) => {
+            poster.set(form.data);
+            poster.save();
+            res.redirect('/posters');
+        },
+        'error': async (form) => {
+            res.render('posters/update', {
+                'form': form.toHTML(bootstrapField),
+                'poster': poster.toJSON()
+            })
+        }
+    });
+});
 
 module.exports = router;
