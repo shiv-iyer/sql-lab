@@ -16,6 +16,7 @@
                 <th>Stock</th>
                 <th>Height</th>
                 <th>Width</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -45,10 +46,18 @@
                 <td>
                     {{this.width}}
                 </td>
+                {{! add a new table for buttons to update}}
+                <td>
+                    <div>
+                        <a href="/posters/{{this.id}}/update" class="btn btn-primary btn-sm">Update</a>
+                        <a href="/posters/{{this.id}}/delete" class="btn btn-danger btn-sm mt-2">Delete</a>
+                    </div>
+                </td>
             </tr>
             {{/each}}
         </tbody>
     </table>
+    <a href="/posters/create" class="btn btn-primary">Create New</a>
 </div>
 {{/block}}
 
