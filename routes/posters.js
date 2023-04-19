@@ -102,4 +102,33 @@ router.post('/:poster_id/update', async (req, res) => {
     });
 });
 
+// route for deletion (GET to start the process)...
+router.get('/:poster_id/delete', async (req, res) => {
+    // fetch the poster to be deleted
+    const poster = await Poster.where({
+        'id': req.params.poster_id
+    }).fetch({
+        require: true
+    });
+
+    // send the poster to the hbs file for deletion
+    res.render('posters/delete', {
+        'poster': poster.toJSON()
+    });
+});
+
+// route for deletion (processing and actual deletion)
+router.post('/:poster_id/delete', async (req, res) => {
+    // fetch the poster to be deleted
+    const poster = await Poster.where({
+        'id': req.params.poster_id
+    }).fetch({
+        require: true
+    });
+
+    // .destroy() will delete the poster
+    await poster.destroy();
+    res.redirect('/posters');
+});
+
 module.exports = router;
